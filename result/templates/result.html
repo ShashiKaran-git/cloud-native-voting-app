@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Results</title>
+  <meta http-equiv="refresh" content="2">
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #1a1a2e; color: white; padding: 50px; }
+    .bar-container { background: #16213e; border-radius: 10px; height: 40px; margin: 10px auto; width: 60%; }
+    .bar { height: 40px; border-radius: 10px; transition: width 0.5s; }
+    .cats-bar { background: #e94560; }
+    .dogs-bar { background: #0f3460; }
+    .stat { font-size: 20px; margin: 10px; }
+    .total { margin-top: 30px; font-size: 16px; color: #aaa; }
+  </style>
+</head>
+<body>
+  <h1>📊 Live Results</h1>
+
+  <h2>🐱 Cats — {{ cats_percent }}%</h2>
+  <div class="bar-container">
+    <div class="bar cats-bar" style="width: {{ cats_percent }}%"></div>
+  </div>
+  <p class="stat">{{ cats }} votes</p>
+
+  <h2>🐶 Dogs — {{ dogs_percent }}%</h2>
+  <div class="bar-container">
+    <div class="bar dogs-bar" style="width: {{ dogs_percent }}%"></div>
+  </div>
+  <p class="stat">{{ dogs }} votes</p>
+
+  <p class="total">Total votes: {{ total }} · Auto-refreshes every 2 seconds</p>
+</body>
+</html>
