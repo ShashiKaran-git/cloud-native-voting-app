@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voting App</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #1a1a2e; color: white; padding: 50px; }
+    .btn { padding: 20px 50px; font-size: 24px; margin: 20px; border: none; border-radius: 10px; cursor: pointer; }
+    .cats { background: #e94560; color: white; }
+    .dogs { background: #0f3460; color: white; }
+    .voted { background: #16213e; padding: 20px; border-radius: 10px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🗳️ What's your favourite?</h1>
+  <form method="POST">
+    <button class="btn cats" name="vote" value="Cats">🐱 Cats</button>
+    <button class="btn dogs" name="vote" value="Dogs">🐶 Dogs</button>
+  </form>
+  {% if vote %}
+  <div class="voted">
+    <h2>You voted for <b>{{ vote }}</b>!</h2>
+    <p>Processed by pod: {{ hostname }}</p>
+  </div>
+  {% endif %}
+</body>
+</html>
