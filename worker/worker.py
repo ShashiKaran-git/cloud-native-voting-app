@@ -5,10 +5,10 @@ import os
 import time
 
 REDIS_HOST = os.environ.get('REDIS_HOST', 'redis')
-POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'db')
-POSTGRES_USER = os.environ.get('POSTGRES_USER', 'postgres')
-POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'postgres')
-POSTGRES_DB = os.environ.get('POSTGRES_DB', 'votes')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+POSTGRES_USER = os.environ.get('POSTGRES_USER')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+POSTGRES_DB = os.environ.get('POSTGRES_DB', 'postgres')
 
 def get_postgres():
     while True:
@@ -17,7 +17,8 @@ def get_postgres():
                 host=POSTGRES_HOST,
                 user=POSTGRES_USER,
                 password=POSTGRES_PASSWORD,
-                dbname=POSTGRES_DB
+                dbname=POSTGRES_DB,
+                connect_timeout=5
             )
             print("Connected to PostgreSQL!")
             return conn

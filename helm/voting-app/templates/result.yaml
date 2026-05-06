@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result
+spec:
+  replicas: {{ .Values.result.replicas }}
+  selector:
+    matchLabels:
+      app: result
+  template:
+    metadata:
+      labels:
+        app: result
+    spec:
+      containers:
+        - name: result
+          image: "{{ .Values.result.image.repository }}:{{ .Values.result.image.tag }}"
+          ports:
+            - containerPort: 80
+          env:
+            - name: POSTGRES_HOST
+              value: voting-app-db.crc0ymiue16e.ap-south-1.rds.amazonaws.com
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres2004
+            - name: POSTGRES_DB
+              value: postgres
+          resources:
+            requests:
+              cpu: {{ .Values.result.resources.requests.cpu }}
+              memory: {{ .Values.result.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.result.resources.limits.cpu }}
+              memory: {{ .Values.result.resources.limits.memory }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: result
+spec:
+  type: LoadBalancer
+  selector:
+    app: result
+  ports:
+    - port: 80
+      targetPort: 80
