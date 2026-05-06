@@ -1,0 +1,42 @@
+vote:
+  image:
+    repository: shashikarandev/voting-app-vote
+    tag: latest
+  replicas: 1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 50m
+      memory: 64Mi
+
+worker:
+  image:
+    repository: shashikarandev/voting-app-worker
+    tag: latest
+  replicas: 1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 50m
+      memory: 64Mi
+
+result:
+  image:
+    repository: shashikarandev/voting-app-result
+    tag: latest
+  replicas: 1
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 50m
+      memory: 64Mi
+
+redis:
+  image: redis:7-alpine
+  port: 6379

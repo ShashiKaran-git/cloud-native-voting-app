@@ -17,7 +17,8 @@ def get_votes():
                 host=POSTGRES_HOST,
                 user=POSTGRES_USER,
                 password=POSTGRES_PASSWORD,
-                dbname=POSTGRES_DB
+                dbname=POSTGRES_DB,
+                connect_timeout=5
             )
             cursor = conn.cursor()
             cursor.execute("SELECT vote, COUNT(id) FROM votes GROUP BY vote")
